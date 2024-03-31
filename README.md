@@ -40,44 +40,59 @@ Containerize and serve a NodeJS application using Docker and NGINX.
 
     ```Dockerfile
     FROM node:14
-    WORKDIR /app
-    COPY package.json package-lock.json /app/
+    WORKDIR /usr/src/app
+    COPY package*.json ./
     RUN npm install
-    COPY . /app
+    COPY . .
     EXPOSE 3000
     CMD ["node", "server.js"]
     ```
 
 3. Next, I created a `docker-compose` in the same directory.
 
-    ```docker-compse
-    version: '3'
+    ```docker-compose
+    version: '3.8'
     services:
     app:
         build: .
         ports:
         - "3000:3000"
+
     nginx:
         image: nginx
         volumes:
         - ./nginx.conf:/etc/nginx/nginx.conf
         ports:
-        - "8000:80"
+        - "8080:80"
     ```
+
 4. I also created a `nginx.conf` in still the same directory.
 
     ```nginx.conf
-    server {
-        listen 80;
+    events {}
 
-        location /api/ {
-        proxy_pass http://app:3000;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_set_header Host $host;
-        proxy_cache_bypass $http_upgrade;
+    http {
+        server {
+            listen 80;
+
+            location /api/ {
+                proxy_pass http://app:3000;
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection 'upgrade';
+                proxy_set_header Host $host;
+                proxy_cache_bypass $http_upgrade;
+            }
         }
     }
     ```
+
+5. After finished all of that, I navigated to the terminal and executed the following command to build and run the Docker container:
+
+    ```bash
+    docker-compose up --build
+    ```
+
+6. To check for the result, I visited http://localhost:8080/api/books/ and then also visited http://localhost:8080/api/books/1 to ensure if both pages were displayed correctly.
+7. To finish, I took screenshots of my results, the terminal, and my docker containers. 
 
