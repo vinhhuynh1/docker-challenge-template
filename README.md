@@ -19,7 +19,7 @@ Serve static page using Docker and NGINX.
 4. Then I opened the terminal and built the Docker Image by using the following command:
 
     ```bash
-    docker build -t dockerchallenge1 .
+    docker build -t dockerchallenge1
     ```
 
 5. After that, I ran the Docker container using the following command:
