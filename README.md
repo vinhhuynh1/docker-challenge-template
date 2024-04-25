@@ -106,17 +106,17 @@ Full-stack application consists of three components: a web server (NGINX), a Nod
 4. For `.env`, I inserted these lines of code:
     ```.env
     # Application config
-    DB_ROOT_PASSWORD=password
-    DB_DATABASE=myDB
-    DB_USERNAME=myUser
-    DB_PASSWORD=password
+    DB_ROOT_PASSWORD=vinhhuynh
+    DB_DATABASE=vinhhuynhdb
+    DB_USERNAME=vinhhuynh
+    DB_PASSWORD=vinhhuynh
     DB_HOST=db
 
     # Database config
-    MYSQL_ROOT_PASSWORD=password
-    MYSQL_DATABASE=myDB
-    MYSQL_USER=myUser
-    MYSQL_PASSWORD=password
+    MYSQL_ROOT_PASSWORD=vinhhuynh
+    MYSQL_DATABASE=vinhhuynhdb
+    MYSQL_USER=vinhhuynh
+    MYSQL_PASSWORD=vinhhuynh
     MYSQL_HOST=db
     ```
 
