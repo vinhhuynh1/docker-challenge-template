@@ -152,7 +152,7 @@ Full-stack application consists of three components: a web server (NGINX), a Nod
         volumes:
         - ./docker/db/init/init.sql:/docker-entrypoint-initdb.d/init.sql
     volumes:
-    db-data:
+        db-data:
     ```
 
 6. Then, I opened the terminal for `challenge3` folder, I executed the command below. However, I ran into some errors.
